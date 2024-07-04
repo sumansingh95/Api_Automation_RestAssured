@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Registration Regression Suite" verbose="1">
+
+    <test name="Registration Test">
+        <classes>
+            <class name="org.orgname.CreateRegistrationTests"/>
+            <class name="org.orgname.DeleteRegistrationTests"/>
+            <class name="org.orgname.UpdateRegistration"/>
+        </classes>
+    </test>
+
+</suite>
