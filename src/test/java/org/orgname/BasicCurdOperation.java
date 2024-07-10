@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class BasicCurdOperation {
 
-    @Test
+    @Test(priority = 1)
     public void verifyGetCall() {
         RestAssured.given().baseUri("https://reqres.in").basePath("api/users?page=2").log().all()
                 .when().get()
@@ -14,7 +14,7 @@ public class BasicCurdOperation {
                 .statusCode(200);
     }
 
-    @Test
+    @Test(priority = -1)
     public void verifyPostCall() {
         RestAssured.given().baseUri("https://reqres.in").basePath("api/users").body("{\n" +
                 "    \"name\": \"morpheus\",\n" +

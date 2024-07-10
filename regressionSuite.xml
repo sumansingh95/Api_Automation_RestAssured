@@ -3,9 +3,10 @@
 
     <test name="Registration Test">
         <classes>
-            <class name="org.orgname.CreateRegistrationTests"/>
+           <!-- <class name="org.orgname.CreateRegistrationTests"/>
             <class name="org.orgname.DeleteRegistrationTests"/>
-            <class name="org.orgname.UpdateRegistration"/>
+            <class name="org.orgname.UpdateRegistration"/>-->
+            <class name="org.orgname.BasicCurdOperation"/>
         </classes>
     </test>
 
