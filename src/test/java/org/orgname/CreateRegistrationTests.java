@@ -5,6 +5,7 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import lib.FileReader;
 import lib.RandomDataGenerator;
 import org.testng.Assert;
@@ -161,5 +162,29 @@ public class CreateRegistrationTests {
         requestBody.set("$.mobile", randomMobile);
         RestAssured.given().baseUri(regestrationBaseUri).basePath(regestrationBasePath).body(requestBody.jsonString()).contentType(ContentType.JSON).log().all().when().post().then().log().all().assertThat().statusCode(400);
     }
+
+    @Test()
+    public void checkValidationForNameField() {
+        String randomName = RandomDataGenerator.generateAlphaNumeric(1);
+        requestBody.set("$.name", randomName);
+        String randomEmail = RandomDataGenerator.generateAlphabatic(10) + "@gmail.com";
+        requestBody.set("$.email", randomEmail);
+        String randomMobile = RandomDataGenerator.generateIntNumber(10);
+        requestBody.set("$.mobile", randomMobile);
+        String response = RestAssured.given().baseUri(regestrationBaseUri).basePath(regestrationBasePath).body(requestBody.jsonString()).contentType(ContentType.JSON).when().post().then().extract().response().asString();
+        Assert.assertEquals(response, "should be more than 2 charcters");
+    }
+
+    @Test()
+    public void regestrationSchemaValidation() {
+        String randomName = RandomDataGenerator.generateAlphabatic(7);
+        requestBody.set("$.name", randomName);
+        String randomEmail = RandomDataGenerator.generateAlphabatic(10) + "@gmail.com";
+        requestBody.set("$.email", randomEmail);
+        String randomMobile = RandomDataGenerator.generateIntNumber(10);
+        requestBody.set("$.mobile", randomMobile);
+        RestAssured.given().baseUri(regestrationBaseUri).basePath(regestrationBasePath).body(requestBody.jsonString()).contentType(ContentType.JSON).when().post().then().assertThat().statusCode(201).and().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schema/regestrationResponse.jsd"));
+    }
+
 
 }

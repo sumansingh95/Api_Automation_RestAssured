@@ -15,31 +15,42 @@
     </properties>
 
      <dependencies>
-         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+         <!-- This library is used for generating random test data -->
          <dependency>
              <groupId>org.apache.commons</groupId>
              <artifactId>commons-lang3</artifactId>
              <version>3.14.0</version>
          </dependency>
 
+         <!-- This library is used for reading data from files-->
          <dependency>
              <groupId>commons-io</groupId>
              <artifactId>commons-io</artifactId>
              <version>2.16.1</version>
          </dependency>
 
-         <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
+         <!-- This library is used to converting the string to Json -->
          <dependency>
              <groupId>com.jayway.jsonpath</groupId>
              <artifactId>json-path</artifactId>
              <version>2.9.0</version>
          </dependency>
 
+         <!-- This library is used for schema validation -->
+         <dependency>
+             <groupId>io.rest-assured</groupId>
+             <artifactId>json-schema-validator</artifactId>
+             <version>5.4.0</version>
+         </dependency>
+
+         <!-- This library is used for automating the web services -->
          <dependency>
              <groupId>io.rest-assured</groupId>
              <artifactId>rest-assured</artifactId>
              <version>5.3.0</version>
          </dependency>
+
+         <!-- This library is used for providing the annotations and test reporting -->
          <dependency>
              <groupId>org.testng</groupId>
              <artifactId>testng</artifactId>
@@ -49,6 +60,7 @@
 
     <build>
         <plugins>
+            <!-- Maven suirefire plugin will help us to execute the testng xml files and generate the reports in target>surefire-report folder. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
